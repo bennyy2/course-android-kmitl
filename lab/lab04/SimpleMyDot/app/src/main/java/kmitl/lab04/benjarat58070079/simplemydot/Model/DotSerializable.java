@@ -2,27 +2,30 @@ package kmitl.lab04.benjarat58070079.simplemydot.Model;
 
 import java.io.Serializable;
 
+/**
+ * Created by Benny on 12/9/2560.
+ */
 
 public class DotSerializable implements Serializable {
 
-    private float centerX;
-    private float centerY;
+    private int centerX;
+    private int centerY;
     private int radius;
     private int color;
 
-    public float getCenterX() {
+    public int getCenterX() {
         return centerX;
     }
 
-    public void setCenterX(float centerX) {
+    public void setCenterX(int centerX) {
         this.centerX = centerX;
     }
 
-    public float getCenterY() {
+    public int getCenterY() {
         return centerY;
     }
 
-    public void setCenterY(float centerY) {
+    public void setCenterY(int centerY) {
         this.centerY = centerY;
     }
 
@@ -41,6 +44,4 @@ public class DotSerializable implements Serializable {
     public void setColor(int color) {
         this.color = color;
     }
-
-
 }

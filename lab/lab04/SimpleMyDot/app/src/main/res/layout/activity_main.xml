@@ -41,34 +41,34 @@
         android:onClick="onResetDot"
         android:id="@+id/btnreset" />
 
-        <Button
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onShare"
-            android:text="@string/share"
-            android:id="@+id/btnshare" />
-
 
 
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_marginBottom="10dp">-->
-        <!---->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
 
-        <!--<Button-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:onClick="onOpenActivity"-->
-            <!--android:text="@string/open_2nd_activity"-->
-            <!--android:id="@+id/btnOpenActivity" />-->
 
-    <!--</LinearLayout>-->
+    <Button
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onShare"
+        android:text="@string/share"
+        android:id="@+id/btnshare" />
+
+        <Button
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onOpenActivity"
+            android:text="@string/open_2nd_activity"
+            android:id="@+id/btnOpenActivity" />
+
+    </LinearLayout>
 
 
 

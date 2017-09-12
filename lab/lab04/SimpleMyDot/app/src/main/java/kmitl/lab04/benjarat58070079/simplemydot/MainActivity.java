@@ -17,7 +17,7 @@ import java.util.Random;
 
 import kmitl.lab04.benjarat58070079.simplemydot.Model.Colors;
 import kmitl.lab04.benjarat58070079.simplemydot.Model.Dot;
-import kmitl.lab04.benjarat58070079.simplemydot.Model.DotParcelable;
+import kmitl.lab04.benjarat58070079.simplemydot.Model.DotPacelable;
 import kmitl.lab04.benjarat58070079.simplemydot.Model.DotSerializable;
 import kmitl.lab04.benjarat58070079.simplemydot.Model.Dots;
 import kmitl.lab04.benjarat58070079.simplemydot.Model.ScreenShot;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
 
     private DotView dotView;
     private Dots dots;
-//    Button btnOpenActivity;
+    Button btnOpenActivity;
     Button share;
 
 
@@ -50,6 +50,27 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
             }
         });
 
+        btnOpenActivity = (Button) findViewById(R.id.btnOpenActivity);
+//        final DotSerializable dotSerializable = new DotSerializable();
+//        dotSerializable.setCenterX(150);
+//        dotSerializable.setCenterY(150);
+//        dotSerializable.setColor(Color.RED);
+//        dotSerializable.setRadius(30);
+
+        final DotPacelable dotParcelable = new DotPacelable(150, 150,50);
+        btnOpenActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("xvalue", 30);
+//                intent.putExtra("dotSerializable", dotSerializable);
+                intent.putExtra("dotParcelable", dotParcelable);
+                startActivity(intent);
+
+            }
+        });
+
+
         dotView = (DotView) findViewById(R.id.dotview);
         dotView.setOnDotViewPressListener(this);
         dots = new Dots();
@@ -57,11 +78,6 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
 
     }
 
-    public void onShare(View view) {
-        Bitmap image = ScreenShot.takeScreenShot(view.getRootView());
-        Uri uri = ScreenShot.getUri(getApplicationContext(), image);
-        startActivity(Intent.createChooser(shareIntent(uri), "Share Image Via"));
-    }
 
     private void requestPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
