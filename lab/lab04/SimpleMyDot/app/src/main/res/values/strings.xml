@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SimpleMyDot</string>
+    <string name="reset_dot">clear</string>
+    <string name="random_dot">random</string>
+    <string name="share">share</string>
+    <string name="back">back</string>
+
+
+    <string name="facebook_app_id">1949618635299147</string>
+    <string name="share_links">Share Links</string>
+    <string name="share_photos">Share Photos</string>
+    <string name="share_videos">Share Videos</string>
+    <string name="screen_shot">screen shot</string>
+    <string name="open_2nd_activity">open</string>
+
+</resources>
