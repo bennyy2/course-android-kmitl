@@ -27,9 +27,6 @@ import kmitl.lab04.benjarat58070079.simplemydot.View.DotView;
 
 public class MainActivity extends AppCompatActivity{
 
-
-    private DotView dotView;
-    private Dots dots;
     Button btnOpenActivity;
     Button share;
 
@@ -40,10 +37,10 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         requestPermission();
 
-        //fragment lab05
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.actview, new ViewDotFragment().newInstance()).commit();
+        if(savedInstanceState == null) {
+            initialFragment();
+        }
+
 
         //share screenshot lab04
         share = (Button) findViewById(R.id.btnshare);
@@ -68,6 +65,14 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void initialFragment() {
+        //fragment lab05
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.actview, new ViewDotFragment().newInstance()).commit();
 
     }
 

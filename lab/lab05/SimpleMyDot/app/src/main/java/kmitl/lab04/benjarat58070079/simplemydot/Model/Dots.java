@@ -9,6 +9,14 @@ import kmitl.lab04.benjarat58070079.simplemydot.Fragment.ViewDotFragment;
 public class Dots {
 
 
+    public void changeColor(int dotPosition, int color) {
+        listDot.get(dotPosition).setColor(color);
+        this.listener.onDotsChanged(this);
+    }
+
+    public void changeSize(int dotPosition) {
+        this.listener.onDotsChanged(this);
+    }
 
     public interface OnDotsChangeListener{
         void onDotsChanged(Dots dots);

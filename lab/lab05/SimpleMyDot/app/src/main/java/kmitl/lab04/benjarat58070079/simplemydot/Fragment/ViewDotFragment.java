@@ -1,9 +1,11 @@
 package kmitl.lab04.benjarat58070079.simplemydot.Fragment;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +24,25 @@ import kmitl.lab04.benjarat58070079.simplemydot.View.DotView;
 
 public class ViewDotFragment extends Fragment implements DotView.OnDotViewPressListener, Dots.OnDotsChangeListener, View.OnClickListener{
 
-
     private DotView dotView;
     private Dots dots;
+    private static ViewDotListener listener;
 
     public static ViewDotFragment newInstance() {
         Bundle args = new Bundle();
         ViewDotFragment fragment = new ViewDotFragment();
+        fragment.setListener(listener);
         fragment.setArguments(args);
         return fragment;
     }
+
+    public void setListener(ViewDotListener listener){
+        this.listener = listener;
+    }
+
+    private interface ViewDotListener {
+    }
+
 
 
     public ViewDotFragment() {
@@ -62,10 +73,34 @@ public class ViewDotFragment extends Fragment implements DotView.OnDotViewPressL
         if (dotPosition == -1) {
             Dot newDot = new Dot(x, y, 30, new Colors().getColor());
             dots.addDot(newDot);
+
         } else {
             dots.removeBy(dotPosition);
         }
 
+    }
+
+    @Override
+    public void onDotViewLongPressed(int x, int y) {
+        final int dotPosition = dots.findDot(x, y);
+        if(dotPosition != -1){
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setItems(new CharSequence[]{"Edit Color", "Edit Size"}, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    switch (i){
+                        case 0:
+                            dots.changeColor(dotPosition, new Colors().getColor());
+                            break;
+                        case 1:
+                            dots.changeSize(dotPosition);
+                            break;
+                    }
+                }
+
+            });
+            builder.show();
+        }
     }
 
     @Override
@@ -92,4 +127,6 @@ public class ViewDotFragment extends Fragment implements DotView.OnDotViewPressL
             dots.clearAll();
         }
     }
+
+
 }

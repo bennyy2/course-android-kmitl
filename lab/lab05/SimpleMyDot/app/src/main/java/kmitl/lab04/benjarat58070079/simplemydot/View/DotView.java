@@ -4,10 +4,14 @@ package kmitl.lab04.benjarat58070079.simplemydot.View;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.ContextMenu;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 
 import kmitl.lab04.benjarat58070079.simplemydot.Fragment.ViewDotFragment;
 import kmitl.lab04.benjarat58070079.simplemydot.Model.Dot;
@@ -35,6 +39,8 @@ public class DotView extends View {
 
     public interface OnDotViewPressListener{
         void onDotViewPressed(int x, int y);
+
+        void onDotViewLongPressed(int x, int y);
     }
 
 
@@ -43,16 +49,34 @@ public class DotView extends View {
         this.onDotViewPressListener = onDotViewPressListener;
     }
 
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN){
-            this.onDotViewPressListener
-                    .onDotViewPressed(
-                            (int)event.getX(),
-                            (int)event.getY());
-        }
-        return false;
+        return gestureDetector.onTouchEvent(event);
     }
+
+    GestureDetector gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener(){
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            onDotViewPressListener.onDotViewPressed((int)e.getX(), (int)e.getY());
+            return super.onSingleTapUp(e);
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            onDotViewPressListener.onDotViewLongPressed((int)e.getX(), (int)e.getY());
+            super.onLongPress(e);
+        }
+
+
+    });
+
 
     public DotView(Context context) {
         super(context);
