@@ -1,6 +1,6 @@
 package kmitl.lab07.benjarat58070079.mylazyinstagram.api;
 
-import kmitl.lab07.benjarat58070079.mylazyinstagram.Userprofile;
+import kmitl.lab07.benjarat58070079.mylazyinstagram.model.Userprofile;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

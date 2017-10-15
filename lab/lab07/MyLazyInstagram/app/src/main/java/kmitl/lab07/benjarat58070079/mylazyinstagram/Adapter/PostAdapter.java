@@ -6,19 +6,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import kmitl.lab07.benjarat58070079.mylazyinstagram.MainActivity;
+import java.util.ArrayList;
+import java.util.List;
+
 import kmitl.lab07.benjarat58070079.mylazyinstagram.R;
+import kmitl.lab07.benjarat58070079.mylazyinstagram.model.ListPosts;
 
 
 class Holder extends RecyclerView.ViewHolder{
     public ImageView image;
 
+    public TextView like;
+    public TextView comment;
+
     public Holder(View itemView){
         super(itemView);
         image = (ImageView) itemView.findViewById(R.id.image);
+        like = (TextView) itemView.findViewById(R.id.like);
+        comment = (TextView) itemView.findViewById(R.id.comment);
+
+
 
     }
 
@@ -28,17 +39,17 @@ class Holder extends RecyclerView.ViewHolder{
 public class PostAdapter extends RecyclerView.Adapter<Holder> {
 
     //which data u want to show
-    String[] data = {
-            "https://raw.githubusercontent.com/iangkub/gitdemo/master/cartoon/01.jpg",
-            "https://raw.githubusercontent.com/iangkub/gitdemo/master/cartoon/02.jpg",
-            "https://raw.githubusercontent.com/iangkub/gitdemo/master/cartoon/03.jpg",
-            "https://raw.githubusercontent.com/iangkub/gitdemo/master/cartoon/04.jpg"
-    };
+    private List<ListPosts> data;
 
     private Context context;
 
     public PostAdapter(Context context) {
         this.context = context;
+        data = new ArrayList<>();
+    }
+
+    public void setData(List<ListPosts> data) {
+        this.data = data;
     }
 
 
@@ -46,7 +57,7 @@ public class PostAdapter extends RecyclerView.Adapter<Holder> {
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         //9.holder is each item
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.post_item, null, false);
+        View itemView = inflater.inflate(R.layout.post_item, null);
 
         Holder holder = new Holder(itemView);
         return holder;
@@ -54,18 +65,23 @@ public class PostAdapter extends RecyclerView.Adapter<Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        ImageView image = holder.image;
+        String url = data.get(position).getUrl();
+        String getlike = data.get(position).getLike();
+        String getcomment = data.get(position).getComment();
         //context get from activity
         Glide.with(context)
-                .load(data[position])
-                .into(image);
+                .load(url)
+                .into(holder.image);
+
+        TextView like = holder.like;
+        TextView comment = holder.comment;
+        like.setText(getlike);
+        comment.setText(getcomment);
 
     }
 
     @Override
     public int getItemCount() {
-
-        //to get how much data we hav
-        return data.length;
+        return this.data.size();
     }
 }
