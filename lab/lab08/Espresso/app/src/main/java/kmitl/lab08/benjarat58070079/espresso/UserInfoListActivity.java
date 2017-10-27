@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,6 +46,23 @@ public class UserInfoListActivity extends AppCompatActivity {
             displaySuggestsList(new ArrayList<UserInfo>());
         }
 
+        //        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Button remove = (Button) findViewById(R.id.buttonClearList);
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                preference.save(UserInfoListActivity.EXTTRA_LIST, null);
+                displaySuggestsList(new ArrayList<UserInfo>());
+            }
+        });
+
+        Button back = (Button) findViewById(R.id.buttonBack);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 

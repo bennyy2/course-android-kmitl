@@ -1,9 +1,14 @@
 package kmitl.lab08.benjarat58070079.espresso;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -33,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         preference = new CommonSharePreference(this);
         userInfoList = (UserInfoList) preference.read(UserInfoListActivity.EXTTRA_LIST, UserInfoList.class);
 
+
+
+
     }
 
     private void validate() {
@@ -55,11 +63,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     @OnClick(R.id.buttonGotoList)
     public void gotoList(){
         Intent intent = new Intent(this, UserInfoListActivity.class);
         startActivity(intent);
     }
+
 
 
     private void setUserInfo(String name, String age) {

@@ -33,6 +33,31 @@ public class MainActivityTest {
     }
 
 
+    public void addTest(){
+        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Ying"));
+        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("20"));
+        closeSoftKeyboard();
+        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Ladarat"));
+        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("20"));
+        closeSoftKeyboard();
+        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Somkait"));
+        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("80"));
+        closeSoftKeyboard();
+        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Prayoch"));
+        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("60"));
+        closeSoftKeyboard();
+        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Prayoch"));
+        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("50"));
+        closeSoftKeyboard();
+        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+
+    }
+
+
     @Test
     public void mainActivityTest() {
         onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
@@ -64,10 +89,7 @@ public class MainActivityTest {
 
     @Test
     public void Test5() {
-        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Ying"));
-        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("20"));
-        closeSoftKeyboard();
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addTest();
         onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
         onView(withRecyclerView(R.id.list).atPositionOnView(0, R.id.textName)).check(matches(withText("Ying")));
         onView(withRecyclerView(R.id.list).atPositionOnView(0, R.id.textAge)).check(matches(withText("20")));
@@ -75,10 +97,7 @@ public class MainActivityTest {
 
     @Test
     public void Test6() {
-        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Ladarat"));
-        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("20"));
-        closeSoftKeyboard();
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addTest();
         onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
         onView(withRecyclerView(R.id.list).atPositionOnView(1, R.id.textName)).check(matches(withText("Ladarat")));
         onView(withRecyclerView(R.id.list).atPositionOnView(1, R.id.textAge)).check(matches(withText("20")));
@@ -86,10 +105,7 @@ public class MainActivityTest {
 
     @Test
     public void Test7(){
-        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Somkait"));
-        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("80"));
-        closeSoftKeyboard();
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addTest();
         onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
         onView(withRecyclerView(R.id.list).atPositionOnView(2, R.id.textName)).check(matches(withText("Somkait")));
         onView(withRecyclerView(R.id.list).atPositionOnView(2, R.id.textAge)).check(matches(withText("80")));
@@ -97,10 +113,7 @@ public class MainActivityTest {
 
     @Test
     public void Test8() {
-        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Prayoch"));
-        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("60"));
-        closeSoftKeyboard();
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addTest();
         onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
         onView(withRecyclerView(R.id.list).atPositionOnView(3, R.id.textName)).check(matches(withText("Prayoch")));
         onView(withRecyclerView(R.id.list).atPositionOnView(3, R.id.textAge)).check(matches(withText("60")));
@@ -110,10 +123,7 @@ public class MainActivityTest {
 
     @Test
     public void Test9() {
-        onView(allOf(withId(R.id.editTExtName))).perform(replaceText("Prayoch"));
-        onView(allOf(withId(R.id.editTextAge))).perform(replaceText("50"));
-        closeSoftKeyboard();
-        onView(allOf(withId(R.id.buttonAdded), withText("ADDED"))).perform(click());
+        addTest();
         onView(allOf(withId(R.id.buttonGotoList), withText("GO TO LIST"))).perform(click());
         onView(withRecyclerView(R.id.list).atPositionOnView(4, R.id.textName)).check(matches(withText("Prayoch")));
         onView(withRecyclerView(R.id.list).atPositionOnView(4, R.id.textAge)).check(matches(withText("50")));

@@ -3,6 +3,7 @@ package kmitl.lab08.benjarat58070079.espresso;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
 
@@ -31,5 +32,6 @@ public class CommonSharePreference {
         }
         return result;
     }
+
 }
 
