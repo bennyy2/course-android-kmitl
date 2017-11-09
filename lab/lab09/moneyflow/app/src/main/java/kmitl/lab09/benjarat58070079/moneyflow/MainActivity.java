@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,33 +27,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void showtransection(){
         databaseTable = Room.databaseBuilder(getApplicationContext(),
-                DatabaseTable.class, "DatabasseInfo").build();
+                DatabaseTable.class, "DatabasseInfo")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
 
+//        List<DatabaseInfo> result = databaseTable.getTableDAO().getAll();
+//        ArrayAdapter<DatabaseInfo> adaptor = new ArrayAdapter<>(MainActivity.this,
+//                R.layout.activity_list, result);
+//
+//        ListView messageInfoList = findViewById(R.id.messageList);
+//        messageInfoList.setAdapter(adaptor);
 
-        new AsyncTask<Object, Object, List<DatabaseInfo>>(){
+        List<DatabaseInfo> result = databaseTable.getTableDAO().getAll();
+        ArrayAdapter<DatabaseInfo> adaptor = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_list_item_1, result);
 
-            @Override
-            protected List<DatabaseInfo> doInBackground(Object... voids) {
-                List<DatabaseInfo> result = databaseTable.getTableDAO().getAll();
-                return result;
-            }
-
-            @Override
-            protected void onPostExecute(List<DatabaseInfo> databaseInfos) {
-                for(DatabaseInfo d: databaseInfos){
-                    d.getAmount();
-
-
-
-                }
-                ArrayAdapter<DatabaseInfo> adaptor = new ArrayAdapter<>(MainActivity.this,
-                        android.R.layout.simple_list_item_1, databaseInfos);
-                ListView messageInfoList = (ListView)findViewById(R.id.messageList);
-
-
-                messageInfoList.setAdapter(adaptor);
-            }
-        }.execute();
+        ListView messageInfoList = findViewById(R.id.messageList);
+        messageInfoList.setAdapter(adaptor);
 
     }
 
@@ -60,14 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void addInfo(View view) {
         Intent intent = new Intent(MainActivity.this, AddTransection.class);
-
         startActivity(intent);
         showtransection();
 
 
     }
 
-    public void update(View view) {
+    @Override
+    protected void onResume() {
+        super.onResume();
         showtransection();
     }
 }

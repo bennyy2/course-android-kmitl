@@ -10,7 +10,7 @@ import android.widget.EditText;
 public class AddTransection extends AppCompatActivity {
 
     private int check = 0;
-    public String type = "xx";
+    public String type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,32 +20,32 @@ public class AddTransection extends AppCompatActivity {
 
 
     public void onIncome(View view) {
+        type = "+";
 
     }
 
-    public void onOutcome(View view) {
+    public void onExpense(View view) {
+        type = "-";
     }
 
     public void onSubmit(View view) {
-        final EditText desc = (EditText) findViewById(R.id.description);
-        EditText money = (EditText) findViewById(R.id.amountMoney);
+        final EditText desc = findViewById(R.id.description);
+        EditText money = findViewById(R.id.amountMoney);
 
         final String trans = desc.getText().toString();
         final int amountMoney = Integer.parseInt(money.getText().toString());
-        DatabaseTable databaseTable = Room.databaseBuilder(getApplicationContext(),DatabaseTable.class, "DatabasseInfo").build();
+        DatabaseTable databaseTable = Room.databaseBuilder(getApplicationContext(),DatabaseTable.class, "DatabasseInfo")
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
 
-        new AsyncTask<Void, Void, DatabaseInfo>(){
+        DatabaseInfo databaseInfo = new DatabaseInfo();
+        databaseInfo.setType(type);
+        databaseInfo.setName(trans);
+        databaseInfo.setAmount(amountMoney);
 
-            @Override
-            protected DatabaseInfo doInBackground(Void... voids) {
-                DatabaseInfo databaseInfo = new DatabaseInfo();
-                databaseInfo.setType(type);
-                databaseInfo.setName(trans);
-                databaseInfo.setAmount(amountMoney);
+        databaseTable.getTableDAO().insert(databaseInfo);
 
-                return null;
-            }
-        }.execute();
         finish();
 
     }

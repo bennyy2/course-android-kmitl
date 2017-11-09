@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="รายการ รายรับ-ราบจ่าย"
+        android:text="เพิ่มรายการ"
         android:layout_gravity="center"
         android:textSize="30sp"/>
 
@@ -31,10 +31,10 @@
             android:layout_height="wrap_content"
             android:text="income"/>
         <Button
-            android:onClick="onOutcome"
+            android:onClick="onExpense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="outcome"/>
+            android:text="expense"/>
     </LinearLayout>
 
     <LinearLayout
